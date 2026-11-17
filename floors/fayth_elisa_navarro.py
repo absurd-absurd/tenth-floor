@@ -8,7 +8,7 @@ import math
 import pygame
 
 from engine import config as C
-from engine.bots import PatrolBot, Zapper
+from engine.bots import Zapper
 from engine.kit import Bookshelf, CeilingLight, Crusher, Desk, Drone, FloorLaser, Plant, Poster, Sign, Window
 from engine.room import Furniture, Lift, Platform, Room
 
@@ -161,9 +161,8 @@ class CirculationDesk_(Room):
                        CeilingLight(300), CeilingLight(700), Poster(150, 150, "QUIET", (90, 120, 80))]
         self.furniture += [CirculationDesk(330, C.FLOOR_Y), ReturnBin(560, C.FLOOR_Y),
                            CardCatalog(660, C.FLOOR_Y), Plant(800, C.FLOOR_Y)]
-        # the anti-theft gate by the door zaps on and off; the night guard rolls along the desk
+        # the anti-theft gate by the door zaps on and off
         self.hazards.append(Zapper(230, y_top=380, y_bottom=C.FLOOR_Y, on_time=1.2, off_time=1.6))
-        self.hazards.append(PatrolBot(500, C.FLOOR_Y, left=300, right=860, speed=70))
         self.gate = pygame.Rect(214, 380, 32, 120)
 
     def draw_background(self, surf):
@@ -186,7 +185,6 @@ class TheStacks(Room):
         self.lifts.append(Lift(370, y_top=290, y_bottom=C.FLOOR_Y, width=60))   # the rolling library ladder
         self.furniture += [Bookshelf(130, 400), Bookshelf(240, 400),
                            Bookshelf(480, 290), Bookshelf(610, 290), BookCart(740, C.FLOOR_Y)]
-        self.hazards.append(PatrolBot(560, 290, left=460, right=700, speed=50, sees=False))
         self.hazards.append(Drone(800, y_top=300, y_bottom=C.FLOOR_Y, speed=80))
 
     def draw_background(self, surf):
