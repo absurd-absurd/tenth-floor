@@ -9,7 +9,7 @@ import pygame
 
 from engine import config as C
 from engine.bots import Zapper
-from engine.kit import Bookshelf, CeilingLight, Crusher, Desk, Drone, FloorLaser, Plant, Poster, Sign, Window
+from engine.kit import Bookshelf, CeilingLight, Crusher, Desk, Drone, Plant, Poster, Sign, Window
 from engine.room import Furniture, Lift, Platform, Room
 
 NAME = "The Library"
@@ -214,7 +214,6 @@ class ReadingRoom(Room):
         self.platforms.append(Platform(720, 320, 150))
         self.furniture += [ReadingTable(110, C.FLOOR_Y), ReadingTable(340, C.FLOOR_Y), Plant(680, 410),
                            ArchiveCabinet(785, 320, holds_piece=True)]
-        self.hazards.append(FloorLaser(300, 540, on_time=1.3, off_time=1.5))     # motion sensor across the aisle
         self.hazards.append(Crusher(610, y_top=240, y_bottom=410, w=50, h=40))    # the overnight book drop
         self.sign = pygame.font.Font(None, 22).render("SPECIAL COLLECTIONS", True, (220, 196, 120))
         self.dust = pygame.Surface((C.W, 140), pygame.SRCALPHA)
